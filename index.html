@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">        
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My recipeAPP</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/main.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+           <div class="wrapper">
+              <div class="box"></div>
+                <span> Welcome to...</span>
+                <h1 id="app-title">BetterCook</h1>
+                <p>Change your life now by cooking healthier and simpler food.</p>
+                <div class="buttons">
+                    <button id = "btn1"> Search now</button>
+                    <button id = "btn2"> Our top recipes</button>
+                </div>
+           </div>
+        </div>
+    </header>
+    <main>
+        <section id="search-section">
+            <div class="search-box">
+               <input type="text" id="search-input" placeholder="Find new recipes here...">
+               <button id="search-button">Search</button>
+            </div>
+        </section>
+         <div id="suggestions"></div>
+        <section id="recipe-details-section" class="hidden">
+            <div id="recipe-details-container"></div>
+        </section>
+        <section id = "similar-recipes-section" class="hidden">
+            <h2>Similar Recipes</h2>
+            <div id="similar-recipes-container"></div>
+        </section>
+        <section id="initial-suggestions-section">
+            <h2>Our suggestions</h2>
+            <div id="initial-suggestions-container"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 </p>
+        <p>Developed by Andrei</p>
+    </footer>
+</body>
+</html>    
