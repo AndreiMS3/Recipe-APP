@@ -10,7 +10,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: left;
-    height: 85vh;
+    height: 100vh;
     max-width: 100%;
     display: flex;
     flex-flow: row wrap;
@@ -35,7 +35,7 @@ body{
     flex-flow:  wrap;
     border-radius: 3px;
     background-color: #F5E6D3;
-    height: 15vh;
+    height: 20vh;
 
 }
 .search-box{
