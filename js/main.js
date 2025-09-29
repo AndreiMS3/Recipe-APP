@@ -2,24 +2,39 @@ import { apiKey } from "./API.js";
 import { searchRecipe,fetchSuggestions } from "./script.js";
 import { showSuggestions } from "./UI.js";
 
-//const searchInput = document.getElementById('search-input');
+const searchInputElem = document.getElementById('search-input');
+const suggestionsList = document.getElementById('suggestions-list');
+let debounceTimer = null;
 
-//const suggestionsList = document.getElementById('suggestions');
+function clearSuggestions() {
+    suggestionsList.innerHTML = '';
+}
 
-//TODO: add function to manage search button both on click and on enter key press.
+// Event listener for input field with debounce
+searchInputElem.addEventListener('input', async () => {
+   clearTimeout(debounceTimer);
+   debounceTimer = setTimeout(async () => {
+        if (searchInputElem.value.trim() === '') {
+            clearSuggestions();
+            return
+        }
+        try {
+            const suggestionsData = await fetchSuggestions(searchInputElem, apiKey);
+            showSuggestions(suggestionsData);
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
+        }
+   }, 500);
+});   
+
 
 async function handleSearch() {
-    const searchInput = document.getElementById('search-input').value.trim();
+    const searchInput = searchInputElem.value.trim();
     if (!searchInput) return;
     try {
         const recipeData = await searchRecipe(searchInput,apiKey);
         console.log(recipeData); // For debugging purposes
         //TODO: Later on, substitute calling a function to display recipes
-
-        const suggestionsData = await fetchSuggestions(searchInput, apiKey);
-        console.log(suggestionsData); // For debugging purposes
-
-        await showSuggestions(suggestionsData);
     } catch (error) {
         console.error('Error handling search:', error);
     }

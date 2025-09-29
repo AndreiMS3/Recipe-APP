@@ -15,22 +15,26 @@
                 <span> Welcome to...</span>
                 <h1 id="app-title">BetterCook</h1>
                 <p>Change your life now by cooking healthier and simpler food.</p>
-                <div class="buttons">
-                    <button id = "btn1"> Search now</button>
-                    <button id = "btn2"> Our top recipes</button>
-                </div>
+                <nav class="navbuttons">
+                    <a href="#search-section" class = "button"> Search now</a>
+                    <a href= "#initial-suggestions-section" class = "button"> Our top recipes</a>
+                </nav>
            </div>
         </div>
     </header>
     <main>
         <section id="search-section">
-            <div class="search-box">
+            <div class="search-box" style= "position:relative;">
                <input type="text" id="search-input" placeholder="Find new recipes here...">
                <button id="search-button">Search</button>
+                <ul id="suggestions-list"></ul>
             </div>
         </section>
          <div id="suggestions-list"></div>
         <section id="recipe-details-section" class="hidden">
+            <div id="recipe-details-container"></div>
+        </section>
+        <section id = "recipe-details" class="hidden">
             <div id="recipe-details-container"></div>
         </section>
         <section id = "similar-recipes-section" class="hidden">
