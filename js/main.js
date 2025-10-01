@@ -4,6 +4,7 @@ import { showSuggestions } from "./UI.js";
 
 const searchInputElem = document.getElementById('search-input');
 const suggestionsList = document.getElementById('suggestions-list');
+const searchButton = document.getElementById('search-button');
 let debounceTimer = null;
 
 function clearSuggestions() {
@@ -19,7 +20,7 @@ searchInputElem.addEventListener('input', async () => {
             return
         }
         try {
-            const suggestionsData = await fetchSuggestions(searchInputElem, apiKey);
+            const suggestionsData = await fetchSuggestions(searchInputElem.value.trim(), apiKey);
             showSuggestions(suggestionsData);
         } catch (error) {
             console.error('Error fetching suggestions:', error);

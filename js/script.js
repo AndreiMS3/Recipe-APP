@@ -11,7 +11,7 @@ async function searchRecipe(searchInput, apiKey) {
 }
 // Function to fetch suggestions based on user input.
 async function fetchSuggestions(searchInput, apiKey) {
-    const response = await fetch(`https://api.spoonacular.com/recipes/autocomplete?query=${encodeURIComponent(searchInput)}&number=10&apiKey=${apiKey}`);
+    const response = await fetch(`https://api.spoonacular.com/recipes/autocomplete?query=${encodeURIComponent(searchInput)}&number=6&apiKey=${apiKey}`);
     if (!response.ok) {
         throw new Error('Problem fetching suggestions');
     }

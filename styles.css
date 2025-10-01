@@ -26,27 +26,25 @@ body{
     padding: 50px;
 }
 
-
-
 #search-section{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     flex-flow:  wrap;
     border-radius: 3px;
     background-color: #F5E6D3;
-    height: 50vh;
+    height: 100vh;
     overflow: visible;
 }
 .search-box{
     display: flex;
     justify-content: center;
+    margin-top: 30px;
     width: 100%;
-    height: 25%;
-
+    position: relative;
 }
 #search-input{
-    background-color: #F7F6F2;
+    background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid #2E7D32;
     color: #333333;
     width: 50%;
@@ -54,36 +52,35 @@ body{
 
 #suggestions-list {
     position: absolute;
-    background: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid #2E7D32;
     border-top: none;
-    width: 50%; /* igual que el input */
+    top: 100%;
+    width: 50%; 
     max-height: 200px;
     overflow-y: auto;
     z-index: 1000;
-    left: 25%; /* centra bajo el input si el input está centrado */
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 #suggestions-list li {
     padding: 8px 12px;
     cursor: pointer;
+    
 }
 
 #suggestions-list li:hover {
     background: #A5D6A7;
 }
 
-.button{
+.button, #search-button{
     background-color: #2E7D32;
     color: #F5E6D3 ;
     padding: 5px 10px;
     border: none;
     
 }
-.button:hover{
+.button:hover, #search-button:hover{
     background-color: #A5D6A7;
     color: #333333;
     transform:scale(1,1.15);
