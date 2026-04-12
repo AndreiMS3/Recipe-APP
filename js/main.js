@@ -1,10 +1,9 @@
 import { apiKey } from "./API.js"; 
-import { searchRecipe,fetchSuggestions } from "./script.js";
-import { showSuggestions } from "./UI.js";
+import { searchRecipe,fetchSuggestions,fetchRecipeDetails } from "./script.js";
+import { showSuggestions,showRecipe,hideRecipe } from "./UI.js";
 
 const searchInputElem = document.getElementById('search-input');
 const suggestionsList = document.getElementById('suggestions-list');
-const searchButton = document.getElementById('search-button');
 let debounceTimer = null;
 
 function clearSuggestions() {
@@ -14,6 +13,7 @@ function clearSuggestions() {
 // Event listener for input field with debounce
 searchInputElem.addEventListener('input', async () => {
    clearTimeout(debounceTimer);
+   hideRecipe();
    debounceTimer = setTimeout(async () => {
         if (searchInputElem.value.trim() === '') {
             clearSuggestions();
@@ -31,13 +31,28 @@ searchInputElem.addEventListener('input', async () => {
 
 async function handleSearch() {
     const searchInput = searchInputElem.value.trim();
-    if (!searchInput) return;
+    if (!searchInput) {
+        hideRecipe();
+        return;
+    }
+
     try {
         const recipeData = await searchRecipe(searchInput,apiKey);
         console.log(recipeData); // For debugging purposes
-        //TODO: Later on, substitute calling a function to display recipes
+        
+        if (!recipeData.results || recipeData.results.length === 0) {
+            hideRecipe();
+            return;
+        }
+        const firstRecipe = recipeData.results[0];
+        const recipeDetails = await fetchRecipeDetails(firstRecipe.id, apiKey);
+
+        console.log(recipeDetails); // For debugging purposes
+        showRecipe(recipeDetails);
+
     } catch (error) {
         console.error('Error handling search:', error);
+        hideRecipe();
     }
 }    
 
@@ -53,3 +68,8 @@ document.getElementById('search-button').addEventListener('click', async () => {
     await handleSearch();
 });
 
+searchInputElem.addEventListener('input', () => {
+    if (searchInputElem.value.trim() === '') {
+        hideRecipe(); 
+    }
+});

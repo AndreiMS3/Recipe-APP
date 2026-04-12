@@ -8,7 +8,7 @@
     <script src="js/main.js" type="module"></script>
 </head>
 <body>
-    <header>
+    <header id="hero">
         <div class="header-container">
            <div class="wrapper">
               <div class="box"></div>
@@ -17,7 +17,6 @@
                 <p>Change your life now by cooking healthier and simpler food.</p>
                 <nav class="navbuttons">
                     <a href="#search-section" class = "button"> Search now</a>
-                    <a href= "#initial-suggestions-section" class = "button"> Our top recipes</a>
                 </nav>
            </div>
         </div>
@@ -29,32 +28,9 @@
                <button id="search-button">Search</button>
                 <ul id="suggestions-list"></ul>
             </div>
-            <div id="categories-container">
-                <h2>Or choose a category</h2>
-                <div class="categories-buttons">
-                    <button class="category-button" data-category="Breakfast">Breakfast</button>
-                    <button class="category-button" data-category="Lunch">Lunch</button>
-                    <button class="category-button" data-category="Dinner">Dinner</button>
-                    <button class="category-button" data-category="Dessert">Dessert</button>
-                    <button class="category-button" data-category="Vegetarian">Vegetarian</button>
-                    <button class="category-button" data-category="Vegan">Vegan</button>
-                    <button class="category-button" data-category="Gluten Free">Gluten Free</button>
-                    <button class="category-button" data-category="Keto">Keto</button>
+            <div id="recipe-details-section" class="hidden">
+                <div id="recipe-details-container"></div>
             </div>
-        </section>
-        <section id="recipe-details-section" class="hidden">
-            <div id="recipe-details-container"></div>
-        </section>
-        <section id = "recipe-details" class="hidden">
-            <div id="recipe-details-container"></div>
-        </section>
-        <section id = "similar-recipes-section" class="hidden">
-            <h2>Similar Recipes</h2>
-            <div id="similar-recipes-container"></div>
-        </section>
-        <section id="initial-suggestions-section">
-            <h2>Our suggestions</h2>
-            <div id="initial-suggestions-container"></div>
         </section>
     </main>
     <footer>

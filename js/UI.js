@@ -23,19 +23,33 @@ async function showSuggestions(suggestionsData) {
 }
 
 async function showRecipe(recipe) {
+    const recipeDetailsSection = document.getElementById('recipe-details-section');
     const recipeDetailsContainer = document.getElementById('recipe-details-container');
     recipeDetailsContainer.innerHTML = `
         <h3>${recipe.title}</h3>
         <img src="${recipe.image}" alt="${recipe.title}">
-        <p>Ready in ${recipe.readyInMinutes} minutes | Servings: ${recipe.servings}</p>
+        <p>Ready in ${recipe.readyInMinutes || 'N/A'} minutes | Servings: ${recipe.servings || 'N/A'}</p>
         <h4>Ingredients:</h4>
         <ul>
-            ${recipe.extendedIngredients.map(ing => `<li>${ing.original}</li>`).join('')}
+            ${
+                recipe.extendedIngredients
+                ? recipe.extendedIngredients.map(ing => `<li>${ing.original}</li>`).join('')
+                : '<li>No ingredients available.</li>'
+            }
         </ul>
         <h4>Instructions:</h4>
         <p>${recipe.instructions || 'No instructions available.'}</p>
     `;
-    document.getElementById('recipe-details-section').classList.remove('hidden');
+    recipeDetailsSection.classList.remove('hidden');
 }
 
-export { showSuggestions, showRecipe };
+function hideRecipe() {
+    const section = document.getElementById('recipe-details-section');
+    const container = document.getElementById('recipe-details-container');
+
+    container.innerHTML = '';
+    section.classList.add('hidden');
+}
+
+
+export { showSuggestions, showRecipe, hideRecipe };

@@ -19,5 +19,13 @@ async function fetchSuggestions(searchInput, apiKey) {
     return await response.json(); //Suggestions data in JSON format
 }
 
+async function fetchRecipeDetails(recipeId, apiKey) {
+    const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`);
+    if (!response.ok) {
+        throw new Error('Problem fetching recipe details');
+    }
+    return await response.json(); //Recipe details data in JSON format
+}
 
-export { searchRecipe ,fetchSuggestions };
+
+export { searchRecipe ,fetchSuggestions, fetchRecipeDetails}; 
