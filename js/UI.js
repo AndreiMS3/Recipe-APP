@@ -51,5 +51,14 @@ function hideRecipe() {
     section.classList.add('hidden');
 }
 
-
-export { showSuggestions, showRecipe, hideRecipe };
+function showError(message) {
+    const recipeDetailsSection = document.getElementById('recipe-details-section');
+    const recipeDetailsContainer = document.getElementById('recipe-details-container');
+    recipeDetailsContainer.innerHTML = `
+    <div class="error-message">
+        <h2>⚠️ Error</h2>
+        <p>${message}</p>
+    </div>`;
+    recipeDetailsSection.classList.remove('hidden');
+}
+export { showSuggestions, showRecipe, hideRecipe, showError };
