@@ -24,7 +24,7 @@ searchInputElem.addEventListener('input', async () => {
             showSuggestions(suggestionsData);
         } catch (error) {
             console.error('Error fetching suggestions:', error);
-            showError('Failed to fetch suggestions.');
+            clearSuggestions();
         }
    }, 500);
 });   
@@ -33,7 +33,6 @@ searchInputElem.addEventListener('input', async () => {
 async function handleSearch() {
     const searchInput = searchInputElem.value.trim();
     if (!searchInput) {
-        hideRecipe();
         showError('Please enter a search term.');
         return;
     }
@@ -43,7 +42,7 @@ async function handleSearch() {
         console.log(recipeData); // For debugging purposes
         
         if (!recipeData.results || recipeData.results.length === 0) {
-            hideRecipe();
+            showError('No recipes found for that search.');
             return;
         }
         const firstRecipe = recipeData.results[0];
