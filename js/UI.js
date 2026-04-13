@@ -1,8 +1,9 @@
-
+const suggestionsList = document.getElementById('suggestions-list');
+const recipeDetailsSection = document.getElementById('recipe-details-section');
+const recipeDetailsContainer = document.getElementById('recipe-details-container');
 
 // Function to display suggestions in the UI.
-async function showSuggestions(suggestionsData) {
-    const suggestionsList = document.getElementById('suggestions-list');
+function showSuggestions(suggestionsData) {
     suggestionsList.innerHTML = ''; // Clear previous suggestions
     if (suggestionsData != null) {
         try {
@@ -21,10 +22,8 @@ async function showSuggestions(suggestionsData) {
         }    
     };
 }
-
-async function showRecipe(recipe) {
-    const recipeDetailsSection = document.getElementById('recipe-details-section');
-    const recipeDetailsContainer = document.getElementById('recipe-details-container');
+// Function to display recipe details in the UI.
+function showRecipe(recipe) {
     recipeDetailsContainer.innerHTML = `
         <h3>${recipe.title}</h3>
         <img src="${recipe.image}" alt="${recipe.title}">
@@ -42,18 +41,14 @@ async function showRecipe(recipe) {
     `;
     recipeDetailsSection.classList.remove('hidden');
 }
-
+// Function to hide the recipe details section.
 function hideRecipe() {
-    const section = document.getElementById('recipe-details-section');
-    const container = document.getElementById('recipe-details-container');
-
-    container.innerHTML = '';
-    section.classList.add('hidden');
+    recipeDetailsContainer.innerHTML = '';
+    recipeDetailsSection.classList.add('hidden');
 }
 
+// Function to display error messages in the UI.
 function showError(message) {
-    const recipeDetailsSection = document.getElementById('recipe-details-section');
-    const recipeDetailsContainer = document.getElementById('recipe-details-container');
     recipeDetailsContainer.innerHTML = `
     <div class="error-message">
         <h2>⚠️ Error</h2>
@@ -61,4 +56,15 @@ function showError(message) {
     </div>`;
     recipeDetailsSection.classList.remove('hidden');
 }
-export { showSuggestions, showRecipe, hideRecipe, showError };
+//Display a loading message while fetching data.
+function showLoading(message = 'Loading...') {
+
+    recipeDetailsContainer.innerHTML = `
+        <div class="loading-message">
+            <p>${message}</p>
+        </div>
+    `;
+
+    recipeDetailsSection.classList.remove('hidden');
+}
+export { showSuggestions, showRecipe, hideRecipe, showError, showLoading };

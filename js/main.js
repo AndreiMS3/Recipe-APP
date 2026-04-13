@@ -1,6 +1,6 @@
 import { apiKey } from "./API.js"; 
 import { searchRecipe,fetchSuggestions,fetchRecipeDetails } from "./script.js";
-import { showSuggestions,showRecipe,hideRecipe,showError } from "./UI.js";
+import { showSuggestions,showRecipe,hideRecipe,showError,showLoading } from "./UI.js";
 
 const searchInputElem = document.getElementById('search-input');
 const suggestionsList = document.getElementById('suggestions-list');
@@ -38,6 +38,8 @@ async function handleSearch() {
     }
 
     try {
+        showLoading('Searching recipe...');
+        
         const recipeData = await searchRecipe(searchInput,apiKey);
         console.log(recipeData); // For debugging purposes
         
