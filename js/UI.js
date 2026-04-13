@@ -3,7 +3,7 @@ const recipeDetailsSection = document.getElementById('recipe-details-section');
 const recipeDetailsContainer = document.getElementById('recipe-details-container');
 
 // Function to display suggestions in the UI.
-function showSuggestions(suggestionsData) {
+function showSuggestions(suggestionsData, onSuggestionClick) {
     suggestionsList.innerHTML = ''; // Clear previous suggestions
     if (suggestionsData != null) {
         try {
@@ -11,8 +11,7 @@ function showSuggestions(suggestionsData) {
                 const li = document.createElement('li');
                 li.textContent = suggestion.title;
                 li.addEventListener('click', () => {
-                    document.getElementById('search-input').value = suggestion.title;
-                    suggestionsList.innerHTML = '';
+                    onSuggestionClick(suggestion.title);
                 });
                 suggestionsList.appendChild(li);
             });

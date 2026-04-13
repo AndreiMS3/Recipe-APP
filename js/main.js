@@ -21,7 +21,11 @@ searchInputElem.addEventListener('input', async () => {
         }
         try {
             const suggestionsData = await fetchSuggestions(searchInputElem.value.trim(), apiKey);
-            showSuggestions(suggestionsData);
+            showSuggestions(suggestionsData, async (selectedTitle) => {
+                searchInputElem.value = selectedTitle;
+                clearSuggestions();
+                await handleSearch();
+            });
         } catch (error) {
             console.error('Error fetching suggestions:', error);
             clearSuggestions();
@@ -39,7 +43,7 @@ async function handleSearch() {
 
     try {
         showLoading('Searching recipe...');
-        
+
         const recipeData = await searchRecipe(searchInput,apiKey);
         console.log(recipeData); // For debugging purposes
         
@@ -52,6 +56,7 @@ async function handleSearch() {
 
         console.log(recipeDetails); // For debugging purposes
         showRecipe(recipeDetails);
+
 
     } catch (error) {
         console.error('Error handling search:', error);
