@@ -1,6 +1,6 @@
 import { apiKey } from "./API.js"; 
 import { searchRecipe,fetchSuggestions,fetchRecipeDetails } from "./script.js";
-import { showSuggestions,showRecipe,hideRecipe } from "./UI.js";
+import { showSuggestions,showRecipe,hideRecipe,showError } from "./UI.js";
 
 const searchInputElem = document.getElementById('search-input');
 const suggestionsList = document.getElementById('suggestions-list');
@@ -24,6 +24,7 @@ searchInputElem.addEventListener('input', async () => {
             showSuggestions(suggestionsData);
         } catch (error) {
             console.error('Error fetching suggestions:', error);
+            showError('Failed to fetch suggestions.');
         }
    }, 500);
 });   
@@ -33,6 +34,7 @@ async function handleSearch() {
     const searchInput = searchInputElem.value.trim();
     if (!searchInput) {
         hideRecipe();
+        showError('Please enter a search term.');
         return;
     }
 
@@ -53,6 +55,7 @@ async function handleSearch() {
     } catch (error) {
         console.error('Error handling search:', error);
         hideRecipe();
+        showError('Failed to fetch recipe details.');
     }
 }    
 
