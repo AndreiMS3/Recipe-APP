@@ -68,6 +68,7 @@ async function handleSearch() {
         hideRecipe();
         showError('Error handling search.');
     }
+    clearSuggestions();
 }    
 
 
