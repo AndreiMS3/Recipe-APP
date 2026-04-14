@@ -25,6 +25,8 @@ function showSuggestions(suggestionsData, onSuggestionClick) {
 // Function to display search results in the UI.
 function showSearchResults(resultsData, onResultClick) {
     recipeDetailsContainer.innerHTML = '';
+    recipeDetailsContainer.classList.add('results-grid');
+
     if (resultsData != null) {
         try {
             resultsData.forEach(result => {
@@ -52,6 +54,7 @@ function showSearchResults(resultsData, onResultClick) {
 
 // Function to display recipe details in the UI.
 function showRecipe(recipe) {
+    recipeDetailsContainer.classList.remove('results-grid');
     recipeDetailsContainer.innerHTML = `
         <h3>${recipe.title}</h3>
         <img src="${recipe.image}" alt="${recipe.title}">

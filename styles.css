@@ -30,15 +30,17 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: #F5E6D3;
-    height: 95vh;
+    min-height: 100vh;
     padding: 40px 20px;
     box-sizing: border-box;
 }
-.search-box{
+.search-box {
     display: flex;
     justify-content: center;
     margin-top: 30px;
+    margin-bottom: 30px;
     width: 100%;
+    max-width: 800px;
     position: relative;
 }
 #search-input{
@@ -89,22 +91,22 @@ body{
 }
 
 #recipe-details-section {
-    padding: 40px 30px;
+    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 30px;
+    padding: 0 20px 40px;
+    box-sizing: border-box;
 }
+
 #recipe-details-section.hidden {
     display: none;
 }
 
 #recipe-details-container {
-    max-width: 800px;
     width: 100%;
-    background-color: #F7F6F2;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 1100px;
+    background-color: transparent;
 }
 
 #recipe-details-container img {
@@ -115,19 +117,50 @@ body{
     margin: 20px auto;
 }
 
+#recipe-details-container:not(.results-grid) {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#recipe-details-container:not(.results-grid) img {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
 .result-card {
-    background-color: #F7F6F2;
+    background-color: #fff;
     border-radius: 12px;
     padding: 16px;
-    margin-bottom: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     cursor: pointer;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+}
+
+.result-card:hover {
+    transform: translateY(-4px);
+}
+
+.result-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
 }
 
 .result-card img {
     width: 100%;
-    max-width: 300px;
-    border-radius: 10px;
-    display: block;
-    margin-top: 10px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
 }
+
