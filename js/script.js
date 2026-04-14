@@ -1,6 +1,6 @@
 
 
-// Functioon to search for a recipe on title match.
+// Function to search for up to 10 recipes on title match.
 async function searchRecipe(searchInput, apiKey) { 
     const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?titleMatch=${encodeURIComponent(searchInput)}&number=10&apiKey=${apiKey}`);
     if (!response.ok) {

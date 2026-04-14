@@ -114,3 +114,20 @@ body{
     display: block;
     margin: 20px auto;
 }
+
+.result-card {
+    background-color: #F7F6F2;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+}
+
+.result-card img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    display: block;
+    margin-top: 10px;
+}

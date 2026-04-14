@@ -1,6 +1,6 @@
 import { apiKey } from "./API.js"; 
 import { searchRecipe,fetchSuggestions,fetchRecipeDetails } from "./script.js";
-import { showSuggestions,showRecipe,hideRecipe,showError,showLoading } from "./UI.js";
+import { showSuggestions,showRecipe,hideRecipe,showError,showLoading,showSearchResults } from "./UI.js";
 
 const searchInputElem = document.getElementById('search-input');
 const suggestionsList = document.getElementById('suggestions-list');
@@ -51,17 +51,22 @@ async function handleSearch() {
             showError('No recipes found for that search.');
             return;
         }
-        const firstRecipe = recipeData.results[0];
-        const recipeDetails = await fetchRecipeDetails(firstRecipe.id, apiKey);
-
-        console.log(recipeDetails); // For debugging purposes
-        showRecipe(recipeDetails);
-
+        showSearchResults(recipeData.results, async (selectedRecipe) => {
+            const recipeId = selectedRecipe.id;
+            try {
+                const recipeDetails = await fetchRecipeDetails(recipeId, apiKey);
+                console.log(recipeDetails); // For debugging purposes
+                showRecipe(recipeDetails);
+            } catch (error) {
+                console.error('Error fetching recipe details:', error);
+                showError('Failed to fetch recipe details.');
+            }
+        });
 
     } catch (error) {
         console.error('Error handling search:', error);
         hideRecipe();
-        showError('Failed to fetch recipe details.');
+        showError('Error handling search.');
     }
 }    
 

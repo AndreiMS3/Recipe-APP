@@ -21,6 +21,35 @@ function showSuggestions(suggestionsData, onSuggestionClick) {
         }    
     };
 }
+
+// Function to display search results in the UI.
+function showSearchResults(resultsData, onResultClick) {
+    recipeDetailsContainer.innerHTML = '';
+    if (resultsData != null) {
+        try {
+            resultsData.forEach(result => {
+                // Display each result in the UI
+                const resultDiv = document.createElement('div');
+                resultDiv.classList.add('result-card');
+
+                resultDiv.innerHTML = `
+                    <h3>${result.title}</h3>
+                    <img src="${result.image}" alt="${result.title}">
+                `;
+                resultDiv.addEventListener('click', () => {
+                    onResultClick(result);
+                });
+                recipeDetailsContainer.appendChild(resultDiv);
+            });
+            recipeDetailsSection.classList.remove('hidden');
+        }
+        catch (error) {
+            console.error('Error displaying results:', error);
+        }
+    }
+}
+
+
 // Function to display recipe details in the UI.
 function showRecipe(recipe) {
     recipeDetailsContainer.innerHTML = `
@@ -39,11 +68,6 @@ function showRecipe(recipe) {
         <p>${recipe.instructions || 'No instructions available.'}</p>
     `;
     recipeDetailsSection.classList.remove('hidden');
-}
-// Function to hide the recipe details section.
-function hideRecipe() {
-    recipeDetailsContainer.innerHTML = '';
-    recipeDetailsSection.classList.add('hidden');
 }
 
 // Function to display error messages in the UI.
@@ -66,4 +90,10 @@ function showLoading(message = 'Loading...') {
 
     recipeDetailsSection.classList.remove('hidden');
 }
-export { showSuggestions, showRecipe, hideRecipe, showError, showLoading };
+
+// Function to hide the recipe details section.
+function hideRecipe() {
+    recipeDetailsContainer.innerHTML = '';
+    recipeDetailsSection.classList.add('hidden');
+}
+export { showSuggestions, showRecipe, hideRecipe, showError, showLoading,showSearchResults };
