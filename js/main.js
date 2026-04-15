@@ -66,8 +66,9 @@ async function handleSearch() {
         console.error('Error handling search:', error);
         hideRecipe();
         showError('Error handling search.');
+    } finally {
+        clearSuggestions();
     }
-    clearSuggestions();
 }    
 
 
