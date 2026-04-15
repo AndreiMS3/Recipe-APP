@@ -55,8 +55,13 @@ function showSearchResults(resultsData, onResultClick) {
 // Function to display recipe details in the UI.
 function showRecipe(recipe) {
     recipeDetailsContainer.classList.remove('results-grid');
+    const isFav = isFavorite(recipe.id);
+
     recipeDetailsContainer.innerHTML = `
         <h3>${recipe.title}</h3>
+        <button id="fav-btn">
+            ${isFav ? '💔 Remove from favorites' : '❤️ Add to favorites'}
+        </button>
         <img src="${recipe.image}" alt="${recipe.title}">
         <p>Ready in ${recipe.readyInMinutes || 'N/A'} minutes | Servings: ${recipe.servings || 'N/A'}</p>
         <h4>Ingredients:</h4>
@@ -70,11 +75,24 @@ function showRecipe(recipe) {
         <h4>Instructions:</h4>
         <p>${recipe.instructions || 'No instructions available.'}</p>
     `;
+    const favBtn = document.getElementById('fav-btn');
+
+    favBtn.addEventListener('click', () => {
+        toggleFavorite(recipe);
+        favBtn.textContent = isFavorite(recipe.id)
+        ? '💔 Remove from favorites'
+        : '❤️ Add to favorites';
+    });
+
     recipeDetailsSection.classList.remove('hidden');
+  
+    recipeDetailsSection.scrollIntoView({ behavior: 'smooth' });
 }
 
 // Function to display error messages in the UI.
 function showError(message) {
+    recipeDetailsContainer.classList.remove('results-grid');
+
     recipeDetailsContainer.innerHTML = `
     <div class="error-message">
         <h2>⚠️ Error</h2>
@@ -84,6 +102,7 @@ function showError(message) {
 }
 //Display a loading message while fetching data.
 function showLoading(message = 'Loading...') {
+    recipeDetailsContainer.classList.remove('results-grid');
 
     recipeDetailsContainer.innerHTML = `
         <div class="loading-message">
@@ -97,6 +116,39 @@ function showLoading(message = 'Loading...') {
 // Function to hide the recipe details section.
 function hideRecipe() {
     recipeDetailsContainer.innerHTML = '';
+    recipeDetailsContainer.classList.remove('results-grid');
     recipeDetailsSection.classList.add('hidden');
 }
+
+function getFavorites() {
+    return JSON.parse(localStorage.getItem('favorites')) || [];
+}
+
+function saveFavorites(favorites) {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+function toggleFavorite(recipe) {
+    let favorites = getFavorites();
+
+    const exists = favorites.find(fav => fav.id === recipe.id);
+
+    if (exists) {
+        favorites = favorites.filter(fav => fav.id !== recipe.id);
+    } else {
+        favorites.push({
+            id: recipe.id,
+            title: recipe.title,
+            image: recipe.image
+        });
+    }
+
+    saveFavorites(favorites);
+}
+
+function isFavorite(recipeId) {
+    const favorites = getFavorites();
+    return favorites.some(fav => fav.id === recipeId);
+}
+
 export { showSuggestions, showRecipe, hideRecipe, showError, showLoading,showSearchResults };
