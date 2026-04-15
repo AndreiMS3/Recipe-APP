@@ -1,20 +1,20 @@
 # 🍳 BetterCook
 
-Aplicación web para buscar recetas, ver sugerencias en tiempo real y consultar detalles completos de cada receta.
+Aplicación web full-stack para búsqueda de recetas con autocompletado en tiempo real, renderizado dinámico y backend serverless para proteger credenciales.
 
 ## 🚀 Demo
-👉 [https://tu-app.vercel.app](https://recipe-app-beta-swart.vercel.app/)
 
-## 🧠 Funcionalidades
+👉 **Live:** https://recipe-app-beta-swart.vercel.app/
 
-- 🔍 Búsqueda de recetas por nombre
-- ⚡ Autocompletado con debounce
-- 📋 Listado de resultados en formato grid
-- 👆 Click en receta → detalles completos
-- ⚠️ Manejo de errores en UI
-- ⏳ Indicador de carga
-- 🔐 API protegida mediante Vercel Functions
 
+## ✨ Features destacadas
+
+- 🔁 Arquitectura desacoplada (UI / lógica / API)
+- ⚡ Debounce para optimización de peticiones
+- 🧠 Manejo de estados (loading / error / data)
+- 🔐 API protegida mediante backend serverless
+- ❤️ Persistencia de favoritos con localStorage
+  
 ## 🛠️ Tecnologías
 
 - HTML, CSS, JavaScript (Vanilla)
@@ -41,18 +41,27 @@ Se gestiona mediante variables de entorno en Vercel.
 
 ## 📸 Screenshots
 
-Hero
+### 🏠 Hero
 <img width="1327" height="1051" alt="image" src="https://github.com/user-attachments/assets/fcf662ed-37fb-4b6a-83b9-3f095559b395" />
 
-Grid resultados
+### 📋 Resultados
 <img width="1207" height="1111" alt="image" src="https://github.com/user-attachments/assets/6416c6e1-ad4a-4271-82b7-62ef044cf58c" />
 
-Detalle de receta
+### 🍽️ Detalle de receta
 <img width="1290" height="1092" alt="image" src="https://github.com/user-attachments/assets/4b483fe3-dbbd-4b9a-b462-8f2234c42de2" />
+
+### ❤️ Favoritos
+<img width="989" height="429" alt="image" src="https://github.com/user-attachments/assets/3406c544-6ee9-4955-8d56-af3988e519e9" />
+
 
 
 ## 📈 Mejoras futuras
 
-- Guardar recetas favoritas (localStorage)
-- Filtros (vegano, keto, etc.)
-- Migración a React
+- 📌 Sección de favoritos persistente en UI
+- 🔎 Filtros avanzados (dietas, tiempo, ingredientes)
+- 📄 Paginación de resultados
+- ⚛️ Migración a React para escalabilidad
+
+## 👨‍💻 Autor
+
+Desarrollado por Andrei
