@@ -149,7 +149,8 @@ body{
 }
 
 .result-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .result-card h3 {
@@ -164,3 +165,7 @@ body{
     border-radius: 8px;
 }
 
+.loading-message {
+    text-align: center;
+    font-size: 18px;
+}
