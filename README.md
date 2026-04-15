@@ -48,7 +48,7 @@ Se gestiona mediante variables de entorno en Vercel.
 <img width="1207" height="1111" alt="image" src="https://github.com/user-attachments/assets/6416c6e1-ad4a-4271-82b7-62ef044cf58c" />
 
 ### 🍽️ Detalle de receta
-<img width="1290" height="1092" alt="image" src="https://github.com/user-attachments/assets/4b483fe3-dbbd-4b9a-b462-8f2234c42de2" />
+<img width="1330" height="1129" alt="image" src="https://github.com/user-attachments/assets/c83ca18b-0098-44c3-b362-ac149919bab8" />
 
 ### ❤️ Favoritos
 <img width="989" height="429" alt="image" src="https://github.com/user-attachments/assets/3406c544-6ee9-4955-8d56-af3988e519e9" />
