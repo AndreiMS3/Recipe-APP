@@ -19,7 +19,7 @@ searchInputElem.addEventListener('input', async () => {
             return
         }
         try {
-            const suggestionsData = await fetchSuggestions(searchInputElem.value.trim(), apiKey);
+            const suggestionsData = await fetchSuggestions(searchInputElem.value.trim());
             showSuggestions(suggestionsData, async (selectedTitle) => {
                 searchInputElem.value = selectedTitle;
                 clearSuggestions();
@@ -43,7 +43,7 @@ async function handleSearch() {
     try {
         showLoading('Searching recipe...');
 
-        const recipeData = await searchRecipe(searchInput,apiKey);
+        const recipeData = await searchRecipe(searchInput);
         console.log(recipeData); // For debugging purposes
         
         if (!recipeData.results || recipeData.results.length === 0) {
@@ -53,7 +53,7 @@ async function handleSearch() {
         showSearchResults(recipeData.results, async (selectedRecipe) => {
             const recipeId = selectedRecipe.id;
             try {
-                const recipeDetails = await fetchRecipeDetails(recipeId, apiKey);
+                const recipeDetails = await fetchRecipeDetails(recipeId);
                 console.log(recipeDetails); // For debugging purposes
                 showRecipe(recipeDetails);
             } catch (error) {
