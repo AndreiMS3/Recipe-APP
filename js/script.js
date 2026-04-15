@@ -2,7 +2,7 @@
 
 // Function to search for up to 10 recipes on title match.
 async function searchRecipe(searchInput, apiKey) { 
-    const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?titleMatch=${encodeURIComponent(searchInput)}&number=10&apiKey=${apiKey}`);
+    const response = await fetch(`/api/search?query=${encodeURIComponent(searchInput)}`);
     if (!response.ok) {
         throw new Error('Problem fetching recipes');
     }
@@ -11,7 +11,7 @@ async function searchRecipe(searchInput, apiKey) {
 }
 // Function to fetch suggestions based on user input.
 async function fetchSuggestions(searchInput, apiKey) {
-    const response = await fetch(`https://api.spoonacular.com/recipes/autocomplete?query=${encodeURIComponent(searchInput)}&number=6&apiKey=${apiKey}`);
+    const response = await fetch(`/api/suggestions?query=${encodeURIComponent(searchInput)}`);
     if (!response.ok) {
         throw new Error('Problem fetching suggestions');
     }
@@ -20,7 +20,7 @@ async function fetchSuggestions(searchInput, apiKey) {
 }
 
 async function fetchRecipeDetails(recipeId, apiKey) {
-    const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`);
+    const response = await fetch(`/api/recipe-details?id=${recipeId}`);
     if (!response.ok) {
         throw new Error('Problem fetching recipe details');
     }

@@ -1,4 +1,3 @@
-import { apiKey } from "./API.js"; 
 import { searchRecipe,fetchSuggestions,fetchRecipeDetails } from "./script.js";
 import { showSuggestions,showRecipe,hideRecipe,showError,showLoading,showSearchResults } from "./UI.js";
 
